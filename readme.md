@@ -14,3 +14,4 @@
 3. Log in to the website
 4. Get the list of all courses
 5. Get attendance of each course (source: <https://github.com/AstitvaG/Moodle-Attendance>)
+6. Print the list of all TAs
