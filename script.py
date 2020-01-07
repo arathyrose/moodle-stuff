@@ -51,6 +51,7 @@ driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/section/div/aside/d
 driver.find_element(By.XPATH, "//span[contains(.,'Attendance')]").click() # click on its attendance
 driver.find_element(By.LINK_TEXT, "All courses").click() # click on every other course
 i = 1
+attendance=list()
 while True:
     try:
         cname = driver.find_element(
@@ -61,6 +62,8 @@ while True:
             att = driver.find_element(
                 By.XPATH, '/html/body/div[4]/div/div/div/section/div/table/tbody/tr/td[2]/table['+str(i)+']/tbody/tr[2]/td[2]').text
             print(cname+":" + att + "/"+tot)
+            l1=[cname,att,tot]
+            attendance.append(l1)
         i += 1
     except:
         break
@@ -70,7 +73,7 @@ driver.find_element(By.XPATH,"/html/body/div[3]/nav[2]/ul/li[1]/a").click()
 # get the list of TAs per course
 print('TAs per course')
 print()
-
+course_with_TA=[]
 i=1
 while True:
     try:
@@ -90,15 +93,17 @@ while True:
         while True:
             try:
                 TA_name=driver.find_element(By.XPATH,"/html/body/div[4]/div/div/div/section/div/div/div[5]/table/tbody/tr["+str(j)+"]/td[2]").text
-                TA_list.append(TA_name)
+                if(TA_name!=""):
+                    TA_list.append(TA_name)
                 j+=1
             except:
                 break
+        l1=[cname,TA_list]
+        course_with_TA.append(l1)
         if (j!=1):
             print(cname)
             for TA in TA_list:
-                if (TA!=""):
-                    print(TA)
+                print(TA)
             print()
         # go back to the dashboard
         driver.find_element(By.XPATH,"/html/body/div[3]/nav[2]/ul/li[1]/a").click()
@@ -108,3 +113,18 @@ while True:
         break
 
 driver.quit()
+
+
+# write the attendance to a file
+fout=open('attendance.txt',"w")
+for c in attendance:
+    fout.write(c[0]+':'+c[1]+'/'+c[2]+'\n')
+
+# write the TA details to a file
+fout=open('TA.txt',"w")
+for c in course_with_TA:
+    fout.write(c[0]+"\n")
+    for i in c[1]:
+        fout.write(i+"\n")
+    fout.write("\n")
+    

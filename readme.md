@@ -13,5 +13,5 @@
 2. Enter the Email and password (either entered by the user, or taken from the file `secret.txt`)
 3. Log in to the website
 4. Get the list of all courses
-5. Get attendance of each course (source: <https://github.com/AstitvaG/Moodle-Attendance>)
-6. Print the list of all TAs
+5. Get attendance of each course (source: <https://github.com/AstitvaG/Moodle-Attendance>) and store the details in a file `attendance.txt` (along with the percentage)
+6. Print the list of all TAs and store the details in a file `TA.txt`
