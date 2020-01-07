@@ -12,3 +12,4 @@
 1. Open the `moodle.iiit.ac.in` website
 2. Enter the Email and password
 3. Log in to the website
+4. Get the list of all courses

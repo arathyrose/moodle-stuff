@@ -27,3 +27,18 @@ driver.get("https://moodle.iiit.ac.in/my")
 driver.find_element(By.ID, "username").send_keys(Email)
 driver.find_element(By.ID, "password").send_keys(Pass)
 driver.find_element(By.NAME, "submit").click()
+
+# get the list of all courses
+
+i=1
+list_courses= []
+print("\r",end="")
+while True:
+    try:
+        name = driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/section/div/aside/div/div[2]/div/div["+str(i)+"]/div[1]/h2/a").text
+        list_courses.append(name)
+        i+=1
+    except:
+        break
+
+print(list_courses)
