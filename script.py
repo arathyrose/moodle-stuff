@@ -75,18 +75,14 @@ i=1
 while True:
     try:
         driver.find_element(By.XPATH, "/html/body/div[4]/div/div/div/section/div/aside/div/div[2]/div/div["+str(i)+"]/div[1]/h2/a").click()
-        cname=driver.find_element(By.ID, "courseheader").text
-        print(cname)
-        
+        cname=driver.find_element(By.ID, "courseheader").text        
         # Go to the participants page
         driver.find_element(By.XPATH,'/html/body/div[4]/div/div/div/aside/div[1]/div[2]/ul/li/ul/li[3]/ul/li/ul/li[1]/p/a').click()
         # Select to view only the Teaching Assistants
         el_to_select=driver.find_element(By.XPATH,'/html/body/div[4]/div/div/div/section/div/div/div[1]/div/form/div/select')
-        # print(el_to_select)
-        # print(el_to_select.find_elements_by_tag_name('option'))
         for option in el_to_select.find_elements_by_tag_name('option'):
             if (option.text == 'Teaching Assistant'):
-                option.click() # select() in earlier versions of webdriver
+                option.click()
                 break
         # Extract only the TAs names
         j=1
@@ -94,15 +90,16 @@ while True:
         while True:
             try:
                 TA_name=driver.find_element(By.XPATH,"/html/body/div[4]/div/div/div/section/div/div/div[5]/table/tbody/tr["+str(j)+"]/td[2]").text
-                #print(TA_name)
                 TA_list.append(TA_name)
                 j+=1
             except:
                 break
-        for TA in TA_list:
-            if (TA!=""):
-                print(TA)
-        print()
+        if (j!=1):
+            print(cname)
+            for TA in TA_list:
+                if (TA!=""):
+                    print(TA)
+            print()
         # go back to the dashboard
         driver.find_element(By.XPATH,"/html/body/div[3]/nav[2]/ul/li[1]/a").click()
         i+=1

@@ -4,7 +4,7 @@
 
 1. Do everything as in <https://selenium-python.readthedocs.io/installation.html>
 2. Copy paste the downloaded file in /usr/local/bin
-3. Run it and see whether the version downloaded is right or not match
+3. Run it and see whether the version downloaded is right
 4. Run the script and see if there are any errors
 
 ## Steps followed while coding
